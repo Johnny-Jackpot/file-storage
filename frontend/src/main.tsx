@@ -7,7 +7,7 @@ import {
 import './index.css'
 import Root, {action, loader as rootLoader} from "./routes/root.tsx";
 import ErrorPage from "./error-page.tsx";
-import Contact from "./routes/contact.tsx";
+import Contact, {loader as contactLoader} from "./routes/contact.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +20,7 @@ const router = createBrowserRouter([
       {
         path: "contacts/:contactId",
         element: <Contact />,
+        loader: contactLoader,
       }
     ],
   },
