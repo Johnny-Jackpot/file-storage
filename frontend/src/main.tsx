@@ -8,19 +8,26 @@ import './index.css'
 import Root, {action, loader as rootLoader} from "./routes/root.tsx";
 import ErrorPage from "./error-page.tsx";
 import Contact, {loader as contactLoader} from "./routes/contact.tsx";
+import EditContact, {action as editAction} from "./routes/edit";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
+    element: <Root/>,
+    errorElement: <ErrorPage/>,
     loader: rootLoader,
     action: action,
     children: [
       {
         path: "contacts/:contactId",
-        element: <Contact />,
+        element: <Contact/>,
         loader: contactLoader,
+      },
+      {
+        path: "contacts/:contactId/edit",
+        element: <EditContact/>,
+        loader: contactLoader,
+        action: editAction,
       }
     ],
   },
@@ -28,6 +35,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider router={router}/>
   </React.StrictMode>,
 )
