@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import {authProvider} from "../auth.ts";
 import {router} from "../router.tsx";
+import GoogleLogin from "../components/auth/google/GoogleLogin.tsx";
 
 const REDIRECT_TO = 'redirectTo';
 const USERNAME = 'username';
@@ -52,6 +53,9 @@ function Login() {
       <input name={USERNAME} placeholder='Username'/>
       <button type='submit' disabled={isLoggingIn}>Login</button>
       {actionData?.error ? (<p className='error'>{actionData.error}</p>) : null}
+      <GoogleLogin onSignInResponse={(response) => {
+        console.log(response);
+      }} />
     </Form>
   );
 }
